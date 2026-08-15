@@ -1,5 +1,7 @@
 # Discord Bot
 
+Feel free to test/use bot here: https://discord.gg/KuQj89g9cm
+
 A self-hosted Python Discord bot for VPS deployment. It uses `discord.py`, local SQLite, FFmpeg, and `yt-dlp` for music playback.
 
 No external database server is required. On first start, the bot creates `data/`, `data/bot.db`, and all required SQLite tables automatically.
@@ -242,7 +244,7 @@ YouTube changes often, especially for VPS IP addresses. The bot includes several
 
 More detail: [docs/YOUTUBE_TROUBLESHOOTING.md](docs/YOUTUBE_TROUBLESHOOTING.md)
 
-Test bot HER: https://discord.gg/KuQj89g9cm
+
 
 ## License
 
