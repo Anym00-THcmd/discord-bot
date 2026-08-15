@@ -1,4 +1,4 @@
-# Discord VPS Bot
+# Discord Bot
 
 A self-hosted Python Discord bot for VPS deployment. It uses `discord.py`, local SQLite, FFmpeg, and `yt-dlp` for music playback.
 
@@ -135,16 +135,15 @@ DISCORD_TOKEN=your_real_token_here
 
 ## Configuration
 
-Only `DISCORD_TOKEN` is required.
+ `DISCORD_TOKEN``WELCOME_CHANNEL_ID=` is required. Set `MUSIC_VOICE_CHANNEL_ID=` blank if the bot should join whichever voice channel the caller is currently using.
 
-The default `.env.example` includes the originally requested welcome and music channel IDs:
 
 ```env
 WELCOME_CHANNEL_ID=
 MUSIC_VOICE_CHANNEL_ID=
 ```
 
-Set `MUSIC_VOICE_CHANNEL_ID=` blank if the bot should join whichever voice channel the caller is currently using.
+
 
 Common optional settings:
 
@@ -241,108 +240,7 @@ YouTube changes often, especially for VPS IP addresses. The bot includes several
 - tries multiple yt-dlp player profiles
 - tries search fallback if a specific upload has no usable audio format
 
-First update `yt-dlp`:
-
-```bash
-cd /opt/discord-vps-bot
-source venv/bin/activate
-pip install -U "yt-dlp[default]"
-```
-
-If logs mention signature solving, n-challenge solving, EJS, or only image formats, install Deno:
-
-```bash
-curl -fsSL https://deno.land/install.sh | sudo env DENO_INSTALL=/usr/local sh
-```
-
-If YouTube still blocks the VPS with `403 Forbidden`, export YouTube cookies as Netscape-format `cookies.txt`, upload it to the server, and set:
-
-```env
-YTDLP_COOKIES_FILE=/opt/discord-vps-bot/cookies.txt
-```
-
-Treat `cookies.txt` like a password. Do not commit it.
-
 More detail: [docs/YOUTUBE_TROUBLESHOOTING.md](docs/YOUTUBE_TROUBLESHOOTING.md)
-
-## GitHub Release
-
-Before making a public release:
-
-```bash
-python -m compileall .
-git status
-```
-
-Make sure these are not tracked:
-
-- `.env`
-- `cookies.txt`
-- `data/`
-- logs
-- virtual environments
-
-Suggested first release:
-
-```bash
-git init
-git add .
-git commit -m "Initial Discord VPS bot release"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-Then create a GitHub release from tag `v1.0.0`.
-
-Release checklist: [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md)
-
-## Security
-
-- Do not hardcode the Discord token.
-- Do not commit `.env`.
-- Do not commit `cookies.txt`.
-- Do not commit `data/bot.db`.
-- Rotate the Discord token if it is leaked.
-- Rotate/export fresh YouTube cookies if they are leaked.
-- Keep bot moderation permissions limited to trusted roles.
-
-See [SECURITY.md](SECURITY.md).
-
-## Project Layout
-
-```text
-discord-vps-bot/
-|-- bot.py
-|-- requirements.txt
-|-- .env.example
-|-- CHANGELOG.md
-|-- CONTRIBUTING.md
-|-- SECURITY.md
-|-- core/
-|   |-- config.py
-|   `-- database.py
-|-- cogs/
-|   |-- achievements.py
-|   |-- fun.py
-|   |-- moderation.py
-|   |-- music.py
-|   |-- starboard.py
-|   |-- stats.py
-|   |-- temp_voice.py
-|   |-- welcome.py
-|   `-- xp.py
-|-- docs/
-|   |-- RELEASE_CHECKLIST.md
-|   `-- YOUTUBE_TROUBLESHOOTING.md
-|-- systemd/
-|   `-- discord-bot.service
-`-- .github/
-    `-- workflows/
-        `-- python-check.yml
-```
 
 ## License
 
