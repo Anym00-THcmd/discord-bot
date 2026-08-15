@@ -242,6 +242,8 @@ YouTube changes often, especially for VPS IP addresses. The bot includes several
 
 More detail: [docs/YOUTUBE_TROUBLESHOOTING.md](docs/YOUTUBE_TROUBLESHOOTING.md)
 
+Test bot HER: https://discord.gg/KuQj89g9cm
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
