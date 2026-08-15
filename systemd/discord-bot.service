@@ -1,0 +1,23 @@
+[Unit]
+Description=Python Discord VPS Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=discordbot
+WorkingDirectory=/opt/discord-vps-bot
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/opt/discord-vps-bot/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/opt/discord-vps-bot/venv/bin/python /opt/discord-vps-bot/bot.py
+Restart=always
+RestartSec=10
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/discord-vps-bot/data
+
+[Install]
+WantedBy=multi-user.target
